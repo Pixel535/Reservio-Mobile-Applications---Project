@@ -1,5 +1,6 @@
 package com.example.reservio_project;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,7 +39,8 @@ public class CustomMarkerInfoWindow extends InfoWindow {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(getMapView().getContext(), MakeReservationScreen.class);
+                    getMapView().getContext().startActivity(intent);
                 }
             });
         }
