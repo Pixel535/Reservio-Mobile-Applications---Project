@@ -14,11 +14,13 @@ public class CustomMarkerInfoWindow extends InfoWindow {
     private TextView bodyTextView;
     private String title;
     private String body;
+    private String adress;
 
-    public CustomMarkerInfoWindow(int layoutResId, MapView mapView, String title, String body) {
+    public CustomMarkerInfoWindow(int layoutResId, MapView mapView, String title, String body, String adress) {
         super(layoutResId, mapView);
         this.title = title;
         this.body = body;
+        this.adress = adress;
     }
 
     @Override
@@ -40,6 +42,9 @@ public class CustomMarkerInfoWindow extends InfoWindow {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getMapView().getContext(), MakeReservationScreen.class);
+                    intent.putExtra("title", title);
+                    intent.putExtra("body", body);
+                    intent.putExtra("adress", adress);
                     getMapView().getContext().startActivity(intent);
                 }
             });

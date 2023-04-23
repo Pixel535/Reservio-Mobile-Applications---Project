@@ -49,12 +49,16 @@ public class RestaurantsAPI {
                             double lat = element.optDouble("lat");
                             double lon = element.optDouble("lon");
                             String cuisine = element.getJSONObject("tags").optString("cuisine");
+                            String adress = element.getJSONObject("tags").optString("addr:city") + " " +
+                                            element.getJSONObject("tags").optString("addr:postcode") + " " +
+                                            element.getJSONObject("tags").optString("addr:street") + " " +
+                                            element.getJSONObject("tags").optString("addr:housenumber");
                             GeoPoint restaurantLocation = new GeoPoint(lat, lon);
                             Marker restaurantMarker = new Marker(mapView);
                             restaurantMarker.setPosition(restaurantLocation);
                             restaurantMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                             restaurantMarker.setIcon(drawable);
-                            CustomMarkerInfoWindow infoWindow = new CustomMarkerInfoWindow(R.layout.custom_pop_up, mapView, name, cuisine);
+                            CustomMarkerInfoWindow infoWindow = new CustomMarkerInfoWindow(R.layout.custom_pop_up, mapView, name, cuisine, adress);
                             restaurantMarker.setInfoWindow(infoWindow);
                             mapView.getOverlays().add(restaurantMarker);
                         }
