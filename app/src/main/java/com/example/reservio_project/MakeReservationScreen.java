@@ -3,6 +3,7 @@ package com.example.reservio_project;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -94,12 +95,14 @@ public class MakeReservationScreen  extends AppCompatActivity {
                 {
                     try {
                         Date userDate = simpleDateFormat.parse(date);
-                        System.out.println(userDate);
-                        Date TodayDate = simpleDateFormat.parse(systemDay + "/" + systemMonth + "/" + systemYear);
-                        System.out.println(TodayDate);
-                        if(userDate.before(TodayDate))//napraw
+                        Date TodayDate = simpleDateFormat.parse(systemDay + "/" + (systemMonth + 1) + "/" + systemYear);
+                        if(userDate.after(TodayDate))
                         {
-                            System.out.println("dsdsa");
+                            Reservation reservation = new Reservation(restaurantName, date, hour, minute, givenTableNum, givenSeatsNum, restaurantAdress);
+                            DataBase dataBase = new DataBase(MakeReservationScreen.this);
+                            dataBase.addReservation(reservation);
+                            Intent intent = new Intent(MakeReservationScreen.this, MyReservationsScreen.class);
+                            startActivity(intent);
                         }
                         else
                         {
