@@ -1,9 +1,12 @@
-package com.example.reservio_project;
+package com.example.reservio_project.BackgroundProcesses;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.reservio_project.MakeReservationScreen;
+import com.example.reservio_project.R;
 
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.infowindow.InfoWindow;

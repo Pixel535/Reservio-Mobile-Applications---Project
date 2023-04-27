@@ -1,15 +1,7 @@
-package com.example.reservio_project;
+package com.example.reservio_project.BackgroundProcesses;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
+import com.example.reservio_project.BackgroundProcesses.CustomMarkerInfoWindow;
+import com.example.reservio_project.R;
 
 import org.json.JSONException;
 import org.osmdroid.util.GeoPoint;
@@ -20,8 +12,6 @@ import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.osmdroid.views.overlay.Marker;
-import org.osmdroid.views.overlay.infowindow.InfoWindow;
-import org.osmdroid.views.overlay.infowindow.MarkerInfoWindow;
 
 import java.io.IOException;
 

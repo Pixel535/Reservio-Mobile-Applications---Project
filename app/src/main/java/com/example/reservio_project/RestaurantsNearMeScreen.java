@@ -23,6 +23,8 @@ import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
 import android.Manifest.permission;
 
+import com.example.reservio_project.BackgroundProcesses.RestaurantsAPI;
+
 
 public class RestaurantsNearMeScreen  extends AppCompatActivity {
 

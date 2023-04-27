@@ -1,4 +1,4 @@
-package com.example.reservio_project;
+package com.example.reservio_project.BackgroundProcesses;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.SimpleCursorAdapter;
 
-import java.util.Date;
+import com.example.reservio_project.BackgroundProcesses.Reservation;
+import com.example.reservio_project.R;
 
 public class DataBase extends SQLiteOpenHelper {
 
