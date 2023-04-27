@@ -88,6 +88,7 @@ public class MakeReservationScreen  extends AppCompatActivity {
         error2 = findViewById(R.id.error2);
         error3 = findViewById(R.id.error3);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat simpleTimeFormat = new SimpleDateFormat("HH:mm");
         BookTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,10 +99,13 @@ public class MakeReservationScreen  extends AppCompatActivity {
                         Date TodayDate = simpleDateFormat.parse(systemDay + "/" + (systemMonth + 1) + "/" + systemYear);
                         if(userDate.after(TodayDate))
                         {
-                            Reservation reservation = new Reservation(restaurantName, date, hour, minute, givenTableNum, givenSeatsNum, restaurantAdress);
+                            long dateNum = userDate.getTime();
+                            Date Timedate = simpleTimeFormat.parse(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                            long timeNum = Timedate.getTime();
+                            Reservation reservation = new Reservation(restaurantName, date, hour, minute, givenTableNum, givenSeatsNum, restaurantAdress, dateNum, timeNum);
                             DataBase dataBase = new DataBase(MakeReservationScreen.this);
                             dataBase.addReservation(reservation);
-                            Intent intent = new Intent(MakeReservationScreen.this, MyReservationsScreen.class);
+                            Intent intent = new Intent(MakeReservationScreen.this, MainActivity.class);
                             startActivity(intent);
                         }
                         else
@@ -143,8 +147,7 @@ public class MakeReservationScreen  extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = systemMonth+1;
-                date = day + "/" + month + "/" + year;
+                date = day + "/" + (month+1) + "/" + year;
                 DateButton.setText(date);
             }
         };
