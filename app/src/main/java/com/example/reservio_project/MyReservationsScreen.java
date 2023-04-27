@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -18,6 +19,7 @@ public class MyReservationsScreen extends AppCompatActivity {
 
     private static final String TAG = "MyReservationsScreen";
     DataBase dataBase;
+    Button HomeScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,15 @@ public class MyReservationsScreen extends AppCompatActivity {
         if(dataBase.getAllReservations().isEmpty())
         {
             setContentView(R.layout.empty_data_base);
+
+            HomeScreen = findViewById(R.id.HomeButton);
+            HomeScreen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MyReservationsScreen.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
         else
         {
@@ -71,6 +82,15 @@ public class MyReservationsScreen extends AppCompatActivity {
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
+                }
+            });
+
+            HomeScreen = findViewById(R.id.listHomeButton);
+            HomeScreen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MyReservationsScreen.this, MainActivity.class);
+                    startActivity(intent);
                 }
             });
         }
