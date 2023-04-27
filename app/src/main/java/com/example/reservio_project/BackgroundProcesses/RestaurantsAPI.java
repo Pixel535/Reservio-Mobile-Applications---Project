@@ -15,11 +15,13 @@ import org.osmdroid.views.overlay.Marker;
 
 import java.io.IOException;
 
-public class RestaurantsAPI {
+public class RestaurantsAPI implements IDataService {
 
     public static CustomMarkerInfoWindow currentInfoWindow;
-    public static void RestaurantsAPISearch(double latitude, double longitude, int radius, MapView mapView,
-                                            android.graphics.drawable.Drawable drawable)
+
+    @Override
+    public void RestaurantsAPISearch(double latitude, double longitude, int radius, MapView mapView,
+                                     android.graphics.drawable.Drawable drawable)
     {
         Thread thread = new Thread(new Runnable() {
             @Override

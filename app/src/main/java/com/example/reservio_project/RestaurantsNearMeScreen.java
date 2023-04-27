@@ -23,7 +23,10 @@ import org.osmdroid.views.overlay.OverlayItem;
 import java.util.ArrayList;
 import android.Manifest.permission;
 
+import com.example.reservio_project.BackgroundProcesses.IDataService;
 import com.example.reservio_project.BackgroundProcesses.RestaurantsAPI;
+
+import javax.inject.Inject;
 
 
 public class RestaurantsNearMeScreen  extends AppCompatActivity {
@@ -31,12 +34,14 @@ public class RestaurantsNearMeScreen  extends AppCompatActivity {
     private static final String TAG = "RestaurantsNearMeScreen";
     private MapView mapView;
     private IMapController mapController;
-    private ArrayList<OverlayItem> restaurants = new ArrayList<>();
     Integer range;
     Double latitude;
     Double longitude;
     LocationManager locationManager;
     int x;
+
+    @Inject
+    IDataService dataService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +83,8 @@ public class RestaurantsNearMeScreen  extends AppCompatActivity {
                     marker.setTitle("That's you !");
                     mapView.getOverlays().add(marker);
                     android.graphics.drawable.Drawable restauranticon = getResources().getDrawable(org.osmdroid.library.R.drawable.marker_default);
-                    RestaurantsAPI.RestaurantsAPISearch(latitude, longitude, range, mapView, restauranticon);
+                    dataService = new RestaurantsAPI();
+                    dataService.RestaurantsAPISearch(latitude, longitude, range, mapView, restauranticon);
                     mapView.invalidate();
                     x = 1;
                 }
